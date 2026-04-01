@@ -1,5 +1,5 @@
 from voice import speak
-from model import predict
+from modelfortype import predict
 def run_quiz(qa_list):
     score = 0
     total = len(qa_list)
@@ -7,11 +7,11 @@ def run_quiz(qa_list):
     speak("Let's start the quiz")
 
     for i, (q, a) in enumerate(qa_list, start=1):
-        q_type=predict(q)
+        q_type,conf=predict(q)
         print(f"\nQuestion {i}/{total}: {q}")
         speak(f"Question {i}. {q}")
         
-        print(f"Type: {q_type}")
+        print(f"Type: {q_type} ({conf:.2f}%)")
         speak(f"This is a {q_type} question.")
 
 

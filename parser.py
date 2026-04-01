@@ -7,7 +7,11 @@ def parse_qa(text):
     answers = re.findall(r"A\d+:\s*(.*)", text)
 
     for q, a in zip(questions, answers):
-        a = a.split()[0]  # force one-word answer
-        qa_list.append((q.strip(), a.strip()))
+        qa_list.append((q.strip(), a.strip())) 
 
     return qa_list
+
+
+def parse_questions(text):
+    questions = re.findall(r"\d+\.\s*(.*)", text)
+    return [q.strip() for q in questions]
